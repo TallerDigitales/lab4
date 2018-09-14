@@ -7,6 +7,9 @@ module TimeDivider1Seg (input logic clk, reset, output logic clkout);
 	
 	//25 000 000 tics
 	assign reset_counter = data == 32'b00000001011111010111100001000000 | reset;
+	
+	
+	
 
 	always_ff @(posedge clk)
 	begin

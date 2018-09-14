@@ -8,8 +8,8 @@ module TimeDivider1Seg_tb ();
 	always 
 	begin
 	
-	clk = 1; #20ns;
-	clk = 0; #20ns;
+	clk = 1; #10ns;
+	clk = 0; #10ns;
 	
 	end
 	

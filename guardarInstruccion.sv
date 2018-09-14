@@ -1,21 +1,18 @@
-module guardarInstruccion(input logic selecCafe, input logic [1:0] instruccionActual, input logic rst, output logic [1:0] instruccionSiguiente);
+module guardarInstruccion(input logic selecCafe, input logic rst, output logic [1:0] instruction);
 	
-	logic [1:0] instrucIntermedia;
-	logic cout;
-	sumador #(2) adder(instruccionActual, 2'b01, 1'b0, instrucIntermedia, cout);
-
-	always 
+	counter #(2) _counter(selecCafe,rst, instruction);
+	
+	//adder #(2) sumador(instruccionActual, 2'b01, 1'b0, instrucIntermedia, cout);
+/*
+	always @(posedge selecCafe)
 	begin
 	if (rst)
-		assign instruccionSiguiente = 2'b00;
+		begin
+			instruccionActual <= 2'b00;
+			instruccionSiguiente <= 2'b00;
+		end
 	else
-		if (selecCafe == 1'b1)
-			if (cout == 1'b1)
-				assign instruccionSiguiente = 2'b00;
-			else
-				assign instruccionSiguiente = instrucIntermedia;
-		else
-			instruccionSiguiente = instruccionActual;
-			
+		instruccionSiguiente <= instruccionActual + 1;	
 	end
+*/
 endmodule

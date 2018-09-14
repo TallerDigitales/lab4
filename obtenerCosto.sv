@@ -1,4 +1,4 @@
-module obtenerCosto(input logic [1:0] tipoCafe, output logic costo[5:0]);
+module obtenerCosto(input logic [1:0] tipoCafe, output logic [5:0] costo);
 	//Cafe expreso: 		00
 	//Cafe con leche:		01
 	//Capuccino:			10

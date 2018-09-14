@@ -21,9 +21,9 @@ module CoffeMachine (input logic selcoffe, activatemachine, cancel, reset, coin,
 	logic[5:0] money;
 	
 	
-	assign clkout = clk;
+	//assign clkout = clk;
 	
-	//TimeDivider1Seg _1segdiv(clk, ~Done, clkout);
+	TimeDivider1Seg _1segdiv(clk, ~Done, clkout);
 	
 	
 	obtenerCosto(coffeType, costo);

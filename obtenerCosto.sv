@@ -10,6 +10,6 @@ module obtenerCosto(input logic [1:0] tipoCafe, output logic costo[5:0]);
 	assign capuchino = 6'b000101;
 	assign mocaccino = 6'b000111;
 	
-	Muxr4 #(6) selCosto (cafeExpresso, cafeConLeche, capuccino, mocaccino, tipoCafe, costo)
+	Muxr4 #(6) selCosto (cafeExpresso, cafeConLeche, capuccino, mocaccino, tipoCafe, costo);
 	
 endmodule

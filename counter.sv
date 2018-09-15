@@ -6,7 +6,7 @@ module counter #(parameter bus = 4)
 	adder #(bus) _adder(d,0,cin,q,carryout);
 	always_ff@(posedge clk)
 		begin
-			if(q[bus-1:0] === 'X || reset) 
+			if(q[bus-1:0] === 'X | reset) 
 					d[bus-1:0] <= '1;
 			else if (carryout)
 					d[bus-1:0] <= '0;

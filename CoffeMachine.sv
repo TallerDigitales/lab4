@@ -9,25 +9,26 @@
 //served outputs: indican si el paso de la maquina fue hecho 
 
 module CoffeMachine (input logic selcoffe, activatemachine, cancel, reset, coin,insertCoin, clk, 
-		output WaterServed, CoffeServed, MilkServed, ChocolateServed, SugarServed,Done, 
-		output logic [5:0] change);
+		output logic WaterServed, CoffeServed, MilkServed, ChocolateServed, SugarServed,Done, 
+		output logic [6:0] change_out,coffe_type_out,money_out, output logic clockout);
 
 	logic clkout, start, enoughmoney;
 	
 	logic [1:0] coffeType; 
-	logic [5:0] costo;
+	logic [3:0] costo;
+	logic [3:0] money;
+	logic [3:0] change;
 	
 	
-	logic[5:0] money;
+	assign clkout = clk;
+	
+	TimeDivider1Seg _1segdiv(clk, reset, clkout);
+	
+	assign clockout = clkout;
 	
 	
-	//assign clkout = clk;
 	
-	TimeDivider1Seg _1segdiv(clk, ~Done, clkout);
-	
-	
-	obtenerCosto(coffeType, costo);
-	
+	obtenerCosto _obtcost(coffeType, costo);
 	
 	
 	calcularVuelto _change(money, costo, change, enoughmoney);
@@ -38,12 +39,17 @@ module CoffeMachine (input logic selcoffe, activatemachine, cancel, reset, coin,
 	
 	guardarInstruccion _guardarins(selcoffe, reset, coffeType);
 	
-	assign start = activatemachine & enoughmoney;
+	assign start = activatemachine;// & enoughmoney;
 	
-	CoffePreparationStateMachine _coffe_machine(clkout, reset, start, coffeType,
+	
+	CoffePreparationStateMachine _coffe_prep_state_mach(clkout, reset, start, coffeType,
 												 WaterServed, CoffeServed,
 												 MilkServed, ChocolateServed, SugarServed,Done);
-	
 
+	
+	sevenSegments(costo,change_out);
+	sevenSegments(money,money_out);
+	
+	sevenSegments({2'b00,coffeType},coffe_type_out);
 
 endmodule

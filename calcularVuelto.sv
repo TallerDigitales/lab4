@@ -1,14 +1,14 @@
-module calcularVuelto (input logic [5:0] dinero, costo, output logic [5:0] vuelto, output logic suficienteDinero);
+module calcularVuelto (input logic [3:0] dinero, costo, output logic [3:0] vuelto, output logic suficienteDinero);
 	logic cin;
 	
-	logic [5:0] c1Costo;
+	logic [3:0] c1Costo;
 	assign c1Costo = ~ costo;
 	assign cin = 1'b1;
 	
 	logic negativo;
-	adder #(6) _adder (dinero, c1Costo, cin, vuelto, negativo);
+	adder #(4) _adder (dinero, c1Costo, cin, vuelto, negativo);
 	
-	assign suficienteDinero = ~negativo;
+	assign suficienteDinero = ~vuelto[3];
 
 
 endmodule

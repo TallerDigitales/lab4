@@ -22,9 +22,9 @@ module CoffeMachine (input logic selcoffe, activatemachine, cancel, reset, coin,
 	
 	assign clkout = clk;
 	
-	TimeDivider1Seg _1segdiv(clk, reset, clkout);
+	//TimeDivider1Seg _1segdiv(clk, reset, clkout);
 	
-	assign clockout = clkout;
+	//assign clockout = clkout;
 	
 	
 	
